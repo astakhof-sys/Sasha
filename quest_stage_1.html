@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 Новогодний Квест - Этап 1 🎄</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 50%, #1a472a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Анимированные снежинки фон */
+        body::before {
+            content: '❄️ ❅ ❆ ❄️ ❅ ❆ ❄️ ❅ ❆ ❄️ ❅ ❆';
+            position: fixed;
+            top: -50px;
+            left: 0;
+            right: 0;
+            font-size: 2em;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.3);
+            animation: snowfall 10s infinite linear;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes snowfall {
+            from {
+                top: -50px;
+                opacity: 1;
+            }
+            to {
+                top: 100vh;
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: linear-gradient(180deg, #fff9e6 0%, #fffaf0 100%);
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
+                        0 0 40px rgba(212, 175, 55, 0.3);
+            position: relative;
+            z-index: 1;
+            border: 3px solid #d4af37;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .title {
+            font-size: 2.2em;
+            color: #c41e3a;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #1a472a;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .stars {
+            font-size: 1.5em;
+            letter-spacing: 10px;
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .image-section {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 3px solid #d4af37;
+        }
+
+        .quest-box {
+            background: linear-gradient(135deg, #ffe6cc 0%, #ffd9b3 100%);
+            border: 3px solid #d4af37;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+            position: relative;
+        }
+
+        .quest-box::before {
+            content: '🎁';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 2em;
+            animation: rotate 3s infinite linear;
+        }
+
+        .quest-box::after {
+            content: '🎁';
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            font-size: 2em;
+            animation: rotate 3s infinite linear;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .quest-label {
+            font-size: 0.9em;
+            color: #c41e3a;
+            font-weight: bold;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .quest-text {
+            font-size: 1.3em;
+            color: #1a472a;
+            font-weight: bold;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .emoji-hint {
+            font-size: 2em;
+            margin-top: 10px;
+        }
+
+        .footer-message {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #1a472a;
+            font-weight: bold;
+            padding: 15px;
+            background: rgba(196, 30, 58, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #c41e3a;
+        }
+
+        .arrow {
+            font-size: 1.5em;
+            animation: bounce-right 1.5s infinite;
+            display: inline-block;
+        }
+
+        @keyframes bounce-right {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(8px); }
+        }
+
+        .decoration {
+            text-align: center;
+            font-size: 2em;
+            margin: 20px 0;
+            letter-spacing: 15px;
+            color: #c41e3a;
+            opacity: 0.8;
+        }
+
+        /* Мобильная оптимизация */
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+                border-radius: 15px;
+            }
+
+            .title {
+                font-size: 1.8em;
+            }
+
+            .subtitle {
+                font-size: 1.1em;
+            }
+
+            .quest-text {
+                font-size: 1.1em;
+            }
+
+            .quest-box {
+                padding: 20px;
+            }
+        }
+
+        /* Тёмный режим поддержка */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(135deg, #0d2418 0%, #152e22 50%, #0d2418 100%);
+            }
+
+            .container {
+                background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 100%);
+                border-color: #8b7355;
+            }
+
+            .title {
+                color: #ff6b6b;
+            }
+
+            .subtitle,
+            .quest-text,
+            .footer-message {
+                color: #e0e0e0;
+            }
+
+            .quest-box {
+                background: linear-gradient(135deg, #3d3d3d 0%, #2d2d2d 100%);
+                border-color: #8b7355;
+            }
+
+            .stars,
+            .decoration {
+                color: #ffb347;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">🎄 КВЕСТ К ПОДАРКУ! 🎄</div>
+            <div class="stars">⭐ ✨ ⭐ ✨ ⭐</div>
+            <div class="subtitle">🎉 Привет, искатель приключений! 🎉</div>
+        </div>
+
+        <div class="decoration">🎁 🎀 🎁 🎀 🎁</div>
+
+        <div class="quest-box">
+            <div class="quest-label">📋 Первое задание:</div>
+            <div class="quest-text">
+                Путь к твоему подарку расположен на Физическом симуляторе экстримального спорта, с которым ты играл больше, чем с любыми другими игрушками!
+            </div>
+            <div class="emoji-hint">🛴</div>
+        </div>
+
+        <div class="decoration">❄️ ⛄ ❄️ ⛄ ❄️</div>
+
+        <div class="footer-message">
+            <div class="arrow">➡️</div>
+            <div style="margin-top: 10px;">
+                Ищи следующий QR код на найденном месте!
+            </div>
+        </div>
+    </div>
+</body>
+</html>
