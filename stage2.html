@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎮 Новогодний Квест - Этап 2 🎮</title>
+    <title>Квест: Задача 2 - Gran Turismo Sport</title>
     <style>
         * {
             margin: 0;
@@ -13,328 +13,316 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Анимированный фон с эффектами */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(255, 140, 0, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
-            z-index: 0;
-            pointer-events: none;
+            overflow-x: hidden;
         }
 
         .container {
-            max-width: 600px;
             width: 100%;
-            background: linear-gradient(135deg, rgba(30, 30, 50, 0.9) 0%, rgba(20, 20, 40, 0.95) 100%);
-            border-radius: 25px;
-            padding: 40px 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7),
-                        0 0 60px rgba(255, 140, 0, 0.2),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            position: relative;
-            z-index: 1;
-            border: 2px solid rgba(255, 140, 0, 0.3);
-            overflow: hidden;
+            max-width: 500px;
+            perspective: 1000px;
         }
 
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.05) 0%, transparent 30%),
-                radial-gradient(circle at 80% 70%, rgba(255, 140, 0, 0.05) 0%, transparent 30%);
-            pointer-events: none;
-        }
-
-        .content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .stage-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #ff8c00 0%, #ff6b6b 100%);
-            color: white;
-            padding: 8px 20px;
+        .card {
+            background: white;
             border-radius: 20px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            font-size: 0.9em;
-            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.3);
-            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            animation: slideIn 0.6s ease-out;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .greeting {
-            font-size: 1.8em;
-            font-weight: bold;
-            background: linear-gradient(135deg, #ff8c00 0%, #ff6b6b 50%, #8a2be2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            animation: glow 2s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% { 
-                filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.3));
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            50% { 
-                filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.4));
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
-        }
-
-        .progress-text {
-            font-size: 1.1em;
-            color: #ff8c00;
-            margin-bottom: 20px;
-            font-weight: 600;
         }
 
         .image-section {
-            text-align: center;
-            margin: 40px 0;
-            position: relative;
-        }
-
-        .image-section img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(255, 140, 0, 0.3),
-                        0 0 40px rgba(138, 43, 226, 0.2);
-            border: 3px solid rgba(255, 140, 0, 0.5);
-            transition: transform 0.3s ease, filter 0.3s ease;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .image-section img:hover {
-            transform: scale(1.02);
-            filter: brightness(1.1);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .quest-box {
-            background: linear-gradient(135deg, rgba(255, 140, 0, 0.15) 0%, rgba(138, 43, 226, 0.15) 100%);
-            border: 2px solid rgba(255, 140, 0, 0.4);
-            border-radius: 20px;
-            padding: 30px 25px;
-            margin: 30px 0;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(255, 140, 0, 0.2),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
             overflow: hidden;
         }
 
-        .quest-box::before {
-            content: '🎮';
-            position: absolute;
-            top: -20px;
-            left: 15%;
-            font-size: 3em;
-            animation: sparkle 2s ease-in-out infinite;
-            opacity: 0.6;
+        .image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: zoomIn 0.8s ease-out;
         }
 
-        .quest-box::after {
-            content: '🎮';
-            position: absolute;
-            top: -20px;
-            right: 15%;
-            font-size: 3em;
-            animation: sparkle 2s ease-in-out infinite 0.5s;
-            opacity: 0.6;
-        }
-
-        @keyframes sparkle {
-            0%, 100% { 
-                transform: translateY(0) scale(1);
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
                 opacity: 0;
             }
-            50% { 
-                transform: translateY(30px) scale(1.2);
-                opacity: 0.8;
+            to {
+                transform: scale(1);
+                opacity: 1;
             }
         }
 
-        .quest-label {
-            font-size: 0.95em;
-            color: #ff8c00;
-            font-weight: bold;
+        .sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #FF6B00;
+            border-radius: 50%;
+            animation: sparkleFloat 2s ease-in-out infinite;
+        }
+
+        .sparkle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 60%; right: 10%; animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { top: 40%; right: 20%; animation-delay: 1s; }
+
+        @keyframes sparkleFloat {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-15px) scale(1.2); opacity: 0.6; }
+        }
+
+        .content {
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
             margin-bottom: 15px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(255, 140, 0, 0.3);
+            letter-spacing: 1px;
+            animation: fadeIn 0.6s ease-out 0.3s both;
         }
 
-        .quest-text {
-            font-size: 1.35em;
-            color: #ffffff;
-            font-weight: 600;
-            line-height: 1.6;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #333;
             margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+            line-height: 1.3;
+            animation: fadeIn 0.6s ease-out 0.4s both;
         }
 
-        .emoji-hint {
-            font-size: 2.5em;
-            margin-top: 15px;
-            animation: bounce-icon 1.5s ease-in-out infinite;
-            display: inline-block;
+        .quest-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            animation: bounce 1.5s ease-in-out infinite;
         }
 
-        @keyframes bounce-icon {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-15px) scale(1.1); }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
-        .footer-message {
-            text-align: center;
+        .text {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.6;
+            animation: fadeIn 0.6s ease-out 0.5s both;
+        }
+
+        .highlight {
+            color: #FF6B00;
+            font-weight: 700;
+        }
+
+        .button-container {
             margin-top: 30px;
-            font-size: 1.15em;
-            color: #ff8c00;
-            font-weight: bold;
-            padding: 20px;
-            background: rgba(255, 140, 0, 0.1);
-            border-radius: 15px;
-            border-left: 4px solid #ff8c00;
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 10px;
+            animation: fadeIn 0.6s ease-out 0.6s both;
         }
 
-        .arrow {
-            font-size: 1.8em;
-            animation: bounce-right 1.5s ease-in-out infinite;
-            display: inline-block;
-            margin-right: 8px;
+        .btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        @keyframes bounce-right {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(10px); }
+        .btn-primary {
+            background: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
+            color: white;
+            box-shadow: 0 10px 25px rgba(255, 107, 0, 0.4);
         }
 
-        .stars-decoration {
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 107, 0, 0.6);
+        }
+
+        .btn-primary:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+            border: 2px solid #FF6B00;
+        }
+
+        .btn-secondary:hover {
+            background: #FF6B00;
+            color: white;
+        }
+
+        .footer {
+            padding: 20px 30px;
+            background: #f9f9f9;
+            font-size: 12px;
+            color: #999;
             text-align: center;
-            font-size: 1.8em;
-            margin: 25px 0;
-            letter-spacing: 12px;
-            color: #ff8c00;
-            opacity: 0.7;
-            animation: twinkle 2s ease-in-out infinite;
+            animation: fadeIn 0.6s ease-out 0.7s both;
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+        .emoji-trail {
+            font-size: 24px;
+            margin: 0 5px;
+            display: inline-block;
+            animation: float 2s ease-in-out infinite;
         }
 
-        /* Мобильная оптимизация */
+        .emoji-trail:nth-child(1) { animation-delay: 0s; }
+        .emoji-trail:nth-child(2) { animation-delay: 0.2s; }
+        .emoji-trail:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
         @media (max-width: 480px) {
-            .container {
-                padding: 25px 20px;
-                border-radius: 20px;
+            .content {
+                padding: 30px 20px;
             }
 
-            .greeting {
-                font-size: 1.5em;
+            h1 {
+                font-size: 24px;
             }
 
-            .progress-text {
-                font-size: 1em;
+            .image-section {
+                height: 250px;
             }
 
-            .quest-text {
-                font-size: 1.15em;
-            }
-
-            .quest-box {
-                padding: 20px 15px;
-            }
-
-            .emoji-hint {
-                font-size: 2em;
-            }
-
-            .footer-message {
-                font-size: 1em;
-                padding: 15px;
-            }
-        }
-
-        /* Темный режим (уже реализован) */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: linear-gradient(135deg, #0f0f1e 0%, #0d0d25 50%, #050512 100%);
+            .btn {
+                padding: 12px 16px;
+                font-size: 13px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="content">
-            <div class="header">
-                <div class="stage-badge">🎯 ЭТАП 2 ИЗ 5</div>
-                <div class="greeting">Продолжаем поиск! 🎮</div>
-                <div class="progress-text">⭐⭐ Прогресс: ████░░░░░░ 40%</div>
-            </div>
-
-            <div class="stars-decoration">⭐ ✨ ⭐ ✨ ⭐</div>
-
+        <div class="card">
             <div class="image-section">
-                <img src="quest-stage-2.jpg" alt="Gran Turismo Sport">
+                <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/5b174468-d5ef-4fbf-8edc-241579156c61.png" alt="Gran Turismo Sport">
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
             </div>
 
-            <div class="stars-decoration">✨ ⭐ ✨ ⭐ ✨</div>
+            <div class="content">
+                <div class="badge">🏁 Задача 2</div>
+                
+                <div class="quest-icon">🎮</div>
+                
+                <h1>Продолжаем поиск</h1>
+                
+                <p class="text">
+                    Следующий шаг: <span class="highlight">Gran Turismo Sport</span>
+                </p>
 
-            <div class="quest-box">
-                <div class="quest-label">📋 Второе задание:</div>
-                <div class="quest-text">
-                    Следующий шаг Gran Turismo Sport
+                <div class="button-container">
+                    <button class="btn btn-primary" onclick="completeQuest()">СЛЕДУЮЩИЙ УРО­ВЕНь!</button>
                 </div>
-                <div class="emoji-hint">💿</div>
+
+                <div style="margin-top: 20px;">
+                    <div class="emoji-trail">🏎️</div>
+                    <div class="emoji-trail">⚡</div>
+                    <div class="emoji-trail">🎯</div>
+                </div>
             </div>
 
-            <div class="footer-message">
-                <div class="arrow">➡️</div>
-                <div style="display: inline;">
-                    Ищи следующий QR код на найденном месте!
-                </div>
+            <div class="footer">
+                Ты на правильном пути! 🚀
             </div>
         </div>
     </div>
+
+    <script>
+        function completeQuest() {
+            alert('Отлично! Ты готов к следующей задаче квеста! 🎉');
+            // Здесь можно добавить переход на следующую страницу или действие
+        }
+
+        // Добавляем конфетти эффект при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            createConfetti();
+        });
+
+        function createConfetti() {
+            const confettiPieces = ['🎁', '⭐', '🎉', '🏎️', '💫'];
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const el = document.createElement('div');
+                    el.textContent = confettiPieces[Math.floor(Math.random() * confettiPieces.length)];
+                    el.style.position = 'fixed';
+                    el.style.left = Math.random() * 100 + '%';
+                    el.style.top = '-20px';
+                    el.style.fontSize = '24px';
+                    el.style.pointerEvents = 'none';
+                    el.style.animation = `fall ${2 + Math.random() * 1}s linear`;
+                    document.body.appendChild(el);
+                    setTimeout(() => el.remove(), 3000);
+                }, i * 200);
+            }
+        }
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
