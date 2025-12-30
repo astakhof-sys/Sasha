@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квест: Задача 3 - Пушкин</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2d1810 0%, #1a0f08 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            perspective: 1000px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .image-section {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #2d1810 0%, #1a0f08 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: zoomIn 0.8s ease-out;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #D4AF37;
+            border-radius: 50%;
+            animation: sparkleFloat 2s ease-in-out infinite;
+        }
+
+        .sparkle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 60%; right: 10%; animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { top: 40%; right: 20%; animation-delay: 1s; }
+
+        @keyframes sparkleFloat {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-15px) scale(1.2); opacity: 0.6; }
+        }
+
+        .content {
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: fadeIn 0.6s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.3;
+            animation: fadeIn 0.6s ease-out 0.4s both;
+        }
+
+        .quest-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            animation: bounce 1.5s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .text {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.6;
+            animation: fadeIn 0.6s ease-out 0.5s both;
+            font-style: italic;
+        }
+
+        .highlight {
+            color: #8B4513;
+            font-weight: 700;
+        }
+
+        .button-container {
+            margin-top: 30px;
+            display: flex;
+            gap: 10px;
+            animation: fadeIn 0.6s ease-out 0.6s both;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            color: white;
+            box-shadow: 0 10px 25px rgba(139, 69, 19, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(139, 69, 19, 0.6);
+        }
+
+        .btn-primary:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+            border: 2px solid #8B4513;
+        }
+
+        .btn-secondary:hover {
+            background: #8B4513;
+            color: white;
+        }
+
+        .footer {
+            padding: 20px 30px;
+            background: #f9f9f9;
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            animation: fadeIn 0.6s ease-out 0.7s both;
+        }
+
+        .emoji-trail {
+            font-size: 24px;
+            margin: 0 5px;
+            display: inline-block;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .emoji-trail:nth-child(1) { animation-delay: 0s; }
+        .emoji-trail:nth-child(2) { animation-delay: 0.2s; }
+        .emoji-trail:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @media (max-width: 480px) {
+            .content {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .image-section {
+                height: 250px;
+            }
+
+            .btn {
+                padding: 12px 16px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="image-section">
+                <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/2e886df2-6dab-491e-8122-d8d7317de8bc.png" alt="Пушкин - Собрание сочинений">
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+            </div>
+
+            <div class="content">
+                <div class="badge">📖 Задача 3</div>
+                
+                <div class="quest-icon">✨</div>
+                
+                <h1>Все ещё ищем</h1>
+                
+                <p class="text">
+                    <span class="highlight">"Они сошлись. Волна и камень,<br>стихи и проза, лёд и пламень.<br>Не столь различны меж собой..."</span>
+                </p>
+
+                <div class="button-container">
+                    <button class="btn btn-primary" onclick="completeQuest()">ДАЛЬШЕ!</button>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <div class="emoji-trail">📚</div>
+                    <div class="emoji-trail">✒️</div>
+                    <div class="emoji-trail">💎</div>
+                </div>
+            </div>
+
+            <div class="footer">
+                Помните классику! 📖
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function completeQuest() {
+            alert('Отлично! Ты готов к следующей задаче квеста! 🎉');
+            // Здесь можно добавить переход на следующую страницу или действие
+        }
+
+        // Добавляем конфетти эффект при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            createConfetti();
+        });
+
+        function createConfetti() {
+            const confettiPieces = ['🎁', '⭐', '🎉', '📚', '💫'];
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const el = document.createElement('div');
+                    el.textContent = confettiPieces[Math.floor(Math.random() * confettiPieces.length)];
+                    el.style.position = 'fixed';
+                    el.style.left = Math.random() * 100 + '%';
+                    el.style.top = '-20px';
+                    el.style.fontSize = '24px';
+                    el.style.pointerEvents = 'none';
+                    el.style.animation = `fall ${2 + Math.random() * 1}s linear`;
+                    document.body.appendChild(el);
+                    setTimeout(() => el.remove(), 3000);
+                }, i * 200);
+            }
+        }
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
